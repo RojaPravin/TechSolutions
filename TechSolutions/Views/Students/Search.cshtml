@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TechSolutions.Models.StudentModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search Students</h2>
+
+<p>
+    @Html.ActionLink("Go to Index", "Index")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="Search">Search for Students</label>
+            <input type="Search" class="form-control" id="Search" name="Search" placeholder="Search Here"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+
+   <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fees)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.payment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.profile)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model)
+     {
+        <tr style="vertical-align:middle">
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.course)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fees)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.payment)
+            </td>
+            <td>
+                <img src="~/Content/Profiles/@item.profile" height="100" style="border-radius : 5px" />
+            </td>
+       
+        </tr>
+     }
+
+   
+   </table>
+
+ }
